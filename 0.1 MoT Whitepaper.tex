@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{A Marketplace of Trust: \\ 
+Extracting Reliable Recommendations through Social Evaluation}
+\author{Shaw, Wit, and Partners at ai16z}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper presents a novel approach for evaluating the trustworthiness of information in a decentralized, socially reinforced marketplace. We propose a system in which an artificial intelligence (AI) agent places bets in a simulated virtual market based on asset recommendations from human users. The real-world performance of the AI agent's bets is then used to compute a "trust score" for each user, representing their track record of providing reliable, high-quality recommendations. These trust scores are publicly visible, creating a social reinforcement mechanism and driving incentives for users to build a reputation by positively contributing to the information market. We explore the economic incentives and potential perverse incentives involved in such a system. We discuss current applications of this human-AI interaction in investing, as well as potential future applications in decentralized governance, content moderation, and open-source software development. Our proposed Marketplace of Trust offers a novel approach to aligning individual actors' incentives with honest participation, leveraging the wisdom of the crowd in order to surface the best, most trustworthy information.
+\end{abstract}
+
+\section{Introduction}
+
+In an era characterized by rampant misinformation and information overload, there is an existential need for robust systems able to reliably assess the quality of information at scale. The ability to evaluate the trustworthiness of information is critical for applications ranging from verifying news accuracy and recommendation systems to facilitating effective decentralized governance. Existing trust and reputation ranking systems often struggle to align individual actors' incentives with honest participation, rendering these systems vulnerable to manipulation, gaming, and diverse forms of coordination attacks \textbf{[\textbf{needs citation}]}.
+
+In this paper, we propose a novel Marketplace of Trust model to address the challenges in evaluating the truth. The core idea of the Marketplace of Trust lies in utilizing an AI agent - or a swarm of AI agents - to evaluate and rank the trustworthiness of human actors as reliable information sources. The initial implementation of the Marketplace of Trust involves an AI agent placing simulated virtual bets on digital assets based on recommendations from human users voluntarily interacting with the system. The AI agent will then use the real-world performance of these bets to compute trust scores for each user, ultimately creating a personalized, objective record of the quality of information provided. The resultant scored profiles will be publicly viewable to drive a social reinforcement effect, incentivizing honest participation through a public reputation system. In summary, our proposed Marketplace of Trust system aims to organically surface and identify trustworthy information by aligning objective evaluation with a public reputation system.
+
+This paper outlines the key components and mechanisms of the Marketplace of Trust, including information extraction from user recommendations, trust evaluation via a simulated betting market, and social reinforcement through public trust profiles. We discuss the economic incentives created by this design and potential vulnerabilities to perverse incentives. Lastly, we highlight promising applications for the Marketplace of Trust model, such as financial investing, decentralized governance, content moderation, and open-source software development.
+
+The remainder of this paper is structured as follows: Section 2 provides an overview of related work on trust management and collective intelligence. Section 3 describes the core components and mechanisms of the Marketplace of Trust system. Section 4 analyzes the potential perverse incentives, vulnerabilities, and economic incentives involved. Section 5 discusses current and future applications of the system. Finally, Section 6 concludes and provides directions for future work.
+
+\section{ Background and Related Work}
+
+The proposed Marketplace of Trust builds upon prior work in several distinct but complementary areas, including trust and reputation systems, collective intelligence, and prediction markets.
+
+\subsection{Origins}
+
+\textbf{TODO: Maybe instead of talking about original Eliza we can talk about OUR Eliza
+}
+The proposed use of an AI agent to interact with human users and extract trust scores builds upon early work on conversational interfaces, most notably the ELIZA framework developed by Joseph Weizenbaum in the 1960s \cite{ELIZAWeizenbaum1966}. In this early implementation, ELIZA simulated a Rogerian psychotherapist by pattern-matching user inputs and generating responses based on pre-defined scripts. Although relatively simple and rule-based, it demonstrated the potential for computers to engage in apparently intelligent dialogue and elicit emotional responses from users. Building upon this revelation and the development milestones in Large Language Model (LLM) in the past decade, the AI agent in our proposed Marketplace of Trust serves a similar role in enabling natural language interactions with human users. However, it has the added capability of learning and adapting its behavior based on the observed outcomes of each interaction.
+
+<TODO: Reference modern Eliza repo / framework> (can we get arXiv / bibtex for the framework?)
+
+\subsection{Attack Vectors on LLM-based Agents}
+
+LLMs work by predicting the next token. Thus, they have no way to determine if information is true or not, although they can make more accurate predictions by having correct context. In order to mitigate prompt injection attacks and other attacks, the LLM agent needs access to correct information, or inputs need to be pre-filtered by quantitative measurements to prevent predictions in response to attacks.
+
+<TODO: Flesh this out more>
+
+<Examples of prompt injections and other attacks on LLM agents>
+
+\subsection{Trust and Reputation Systems}
+Trust and reputation systems aim to facilitate optimal outcomes from interactions between agents in the absence of direct prior experience. These systems commonly aggregate feedback from past interactions to compute reputation scores for each agent, which then serve as a proxy for their reliability and trustworthiness \cite{trustJosang}. Reputation systems have been widely applied in diverse contexts, including e-commerce \cite{EBAYREPResnick}, peer-to-peer networks \cite{p2p_rep}, and online communities[\textbf{needs citation}]. Reputation systems serve a crucial role in a market, as quality uncertainty can degrade the overall quality of goods and services available \cite{LEMONSAkerlof}. 
+
+However, many trust and reputation systems remain vulnerable to gaming and manipulation [\textbf{needs citation}]. Self-interested agents may be incentivized to artificially inflate their own scores or collude to attack the scores of others. Sybil attacks, where an attacker creates multiple fake identities, pose another major challenge[\textbf{needs citation}]. Crucially, agents providing feedback on others often lack strong incentives for honesty. The Marketplace of Trust aims to mitigate these issues by tying user reputation to the real-world outcomes of AI-placed bets instead of user-submitted scores, thus creating stronger incentives for providing reliable information.
+
+\subsection{Prediction Markets}
+Prediction markets are speculative markets designed to aggregate opinions and information about uncertain future outcomes. \cite{PREDICTpriceformation} Participants buy and sell contracts, with payoffs contingent on the outcomes of interest, such as election results or product sales. By leveraging the wisdom of the crowd combined with real-world financial incentives, uncapped prediction markets tend to generate forecasts that are more accurate than those of individual experts or deliberating groups \cite{PREDICTSunstein}. This has been clearly demonstrated in the case of the Polymarket pools correctly forecasting the Trump win in the 2024 Presidential Election well ahead of any professional pollster. \cite{wsj_trump_whale_2024}
+
+Clean this up:
+\textbf{The downside of prediction markets is that they require information providers to have any initial investment to make the prediction, and the size of investments from different members can influence future betting by others ("what do they know that I don't?"). This creates a separate set of perverse incentives which can lead to incorrect predictions.}
+
+The Marketplace of Trust adapts ideas from prediction markets by having an AI agent place virtual bets based on public user recommendations. Whereas prediction markets typically focus on eliciting probabilistic forecasts from crowd-sourced betting information, our proposed system aims to surface the sources of trustworthy information and reputable agents based on the real-world outcomes of their recommendations. Examining the strengths and limitations of real-world prediction markets can yield valuable insights for designing a robust Marketplace of Trust.
+
+To clean up:
+\textbf{The Marketplace of Trust does not require information providers to invest money. Instead, the investment is information itself. This can lead to a dynamic prediction market where the the topics of prediction are recommended by information providers}
+
+\subsection{Collective Intelligence}  
+Collective intelligence refers to the ability of groups to make smarter decisions and more accurate judgments than individual experts [\textbf{needs citation}]. By aggregating diverse information, perspectives, and heuristics, collectives can display emergent intelligence that transcends individual ability. Well-known examples of collective intelligence include crowd-sourcing \cite{CROWDsulin} \cite{IncentiveCrowdsourcing}, open-source software development \cite{CI_OS_Stiles}, and citizen science \cite{CitizenSciencePrest}.
+
+At a high level, the Marketplace of Trust system aims to leverage collective intelligence to surface high-quality information by aggregating individual recommendations and evaluating them against objective outcomes. Additionally, the use of a public reputation system aims to create social incentives for productive collaboration and competition among users seeking to establish expertise. Designing effective incentive structures is crucial for eliciting socially beneficial collective intelligence.
+
+\subsection{Cryptocurrency}
+\textbf{<TODO: Flesh this out>}
+Cryptocurrencies are unique in that many are low market cap, involve hundreds of thousands of unique holders, and can be heavily influenced by social and interpersonal signals. Many traders make decisions based on "alpha" which is social signal from other members. Individual traders may index the trustworthiness of information providers based on past performance or perception of past performance.
+
+\section{Marketplace of Trust: System Components}
+
+The Marketplace of Trust consists of three core components: (1) information extraction through user recommendations, (2) trust evaluation through an AI betting market, and (3) social reinforcement through public trust profiles. This section describes each component in detail.
+
+\subsection{Information Extraction} 
+The first step in the Marketplace of Trust pipeline is eliciting recommendations from human users. Users can offer recommendations in the form of free-text justifications, numeric ratings, or other domain-specific formats. For example, in a financial investing context, a user might recommend buying a particular asset and provide a written rationale for their recommendation. In a content moderation setting, a user might flag a post as misinformation and cite specific factual inaccuracies.
+
+To minimize barriers to participation, the system allows users to provide recommendations using natural language. To handle a wide range of inputs and automatically sort user recommendations, the system employs an AI agent to extract structured information from the input. The AI agent analyzes the user's input, interprets the intent, identifies key phrases and sentiments, and categorizes the recommendation. This approach enables the system to handle various recommendation formats and domains while minimizing the need for manual curation or rigid input templates.
+
+Depending on the application context, user recommendations may be weighted differently based on the user's prior history and trust score within the system. For example, recommendations from users with consistently high trust scores may be given higher priority or visibility. Likewise, the system may limit the frequency or volume of recommendations from new or untrusted users to mitigate spam and Sybil attacks.
+
+\textbf{Examples of Information Extraction}
+
+<TODO: Provide examples of positive signal for buy and sell, examples of noise, examples of uncertainty>
+
+Confidence Analysis
+
+Confidence can be low, medium or high, and positive or negative. For example, "this is a scam" is high confidence negative signal. "I just put my college tuition into this" is example of high confidence positive signal.
+
+<TODO: Examples of confidence, positive and negative>
+
+
+\subsection{Trust Evaluation}
+The core innovation of the Marketplace of Trust lies in the trust evaluation module. Rather than directly converting user recommendations into trust scores, the system employs an AI agent to place bets in a virtual market based on the user recommendations.
+
+For each recommendation, the AI agent wagers a certain amount of virtual currency on the expected outcome. The size of the bet is proportional to the AI's confidence in the recommendation, which is based on factors such as the user's prior track record, the specificity and scope of the recommendation, and the degree of agreement with other recommendations in the system. Depending on the domain, the AI agent may use various natural language processing and machine learning techniques to parse the recommendation text and extract structured signals.
+
+Once the AI agent places a bet, it tracks its performance until the market is resolved based on real-world outcomes. The exact implementation depends on the application context, but the key requirement is that ground truth outcomes must be observable and objective. In a financial context, the AI's bets on stock recommendations would be settled based on the actual market prices after a specified time period. In a content moderation setting, AI bets on post classifications may be resolved by majority vote of trusted moderators.
+
+After a bet is resolved, the AI agent's payout (positive or negative) is used to calculate the trust score of the user who provided the original recommendation. Reliable recommendations that lead to successful bets result in trust score increases, while faulty recommendations that lead to losses decrease the trust score. The size of the trust score adjustment may be a nonlinear function of the bet outcome, the user's prior trust score, and other contextual factors.
+
+To smooth trust scores over time and adapt to changing user behavior, the trust evaluation module may employ a multi-armed bandit algorithm. The multi-armed bandit algorithm is a sequential decision-making strategy that balances exploration (trying new options) and exploitation (choosing the best-known option) to optimize outcomes in uncertain environments. \cite{multiarmedbandits} This approach allows the system to explore new and untested users while exploiting the recommendations of proven high-quality users. More sophisticated exploration strategies may be used to handle adversarial settings where users intentionally make misleading recommendations to manipulate their trust scores.
+
+\subsection{Social Reinforcement}
+The final component of the Marketplace of Trust is the social reinforcement module, which publishes user trust scores and leverages social incentives to encourage honest, productive participation.  
+
+Each user has a public trust profile displaying their current trust score and recommendation history. Trust scores are normalized to an intuitive scale (e.g., 0 to 100) and may be broken down by topic or category depending on the application domain. Users may also have the option of adding a short bio or links to external profiles to establish their qualifications and expertise.
+
+The visibility of trust profiles creates a powerful incentive for users to build and maintain a positive reputation within the community. High trust scores serve as social proof of a user's expertise and reliability, which may translate into status, influence, and other external opportunities. For example, in an investment context, traders with high trust scores may attract more clients or better employment options. In open source software development, high-reputation contributors may be more likely to have their code accepted into important projects.  
+
+The social reinforcement module must be designed to mitigate excessive competition, harassment, and other adversarial dynamics. Users should be able to flag trust profiles that violate community guidelines (e.g., personal attacks, hate speech), with clear procedures for moderation and conflict resolution. The user interface should emphasize the constructive purpose of trust profiles in surfacing reliable information rather than encouraging personal rivalries or animosity.
+
+The social reinforcement module may also incorporate explicit community-building features such as discussion forums, collaborative projects, and peer mentoring. By fostering a sense of shared purpose and collective intelligence, these features can align individual incentives with the overall quality and integrity of the information ecosystem. Over time, the Marketplace of Trust aims to cultivate a self-sustaining community of experts who are intrinsically motivated to contribute high-quality recommendations for the benefit of all.
+
+\textbf{<TODO: Current "signal" for trust is number of followers on social media, "smart wallet" / "smart money" connections, etc -- trust can be stored permissionlessly and shared between agents and can serve as a leading trust indicator and proof of work, even outside of economic trust scenarios>}
+
+\textit{Do we want to mention key opinion leaders and perverse incentives of opinion leadership?}
+
+\section{Economic Incentives Analysis}  
+
+The Marketplace of Trust is fundamentally an economic system that aims to incentivize honest, high-quality information sharing. This section examines the economic incentives created by the system design and identifies potential perverse incentives and vulnerabilities.
+
+\subsection{Incentive Alignment}
+The primary incentive mechanism in the Marketplace of Trust is the tight feedback loop between user recommendations, AI betting outcomes, and public trust scores. By linking trust scores to the real-world performance of AI bets, the system creates a direct intrinsic incentive for users to provide reliable, high-quality recommendations. Users who consistently make recommendations that lead to positive betting outcomes are rewarded with high trust scores, while users who make poor or misleading recommendations see their scores decline.
+
+This incentive structure differs from traditional prediction market designs, which typically reward participants based on the accuracy of their own probabilistic forecasts. In the Marketplace of Trust, users are rewarded not for their own bets but for the quality of the recommendations they provide to the AI agent. This creates a more robust incentive alignment by tying rewards to objective, observable outcomes rather than self-reported predictions.
+
+The public visibility of trust profiles further reinforces the economic incentives by adding a social dimension. High trust scores serve as a form of social capital that users can leverage for status, influence, and external opportunities. The desire to maintain a positive reputation can discourage users from making low-quality or malicious recommendations that could damage their standing within the community. 
+
+\subsection{Economic Incentives}
+\textbf{\textit{<TODO: Financial incentives to encourage / reward good behavior>}}
+
+In the Marketplace of Trust, trust is treated as a currency which information providers can earn. Information providers who provide good information can earn a high trust score, which acts like a staking mechanism. From there they can make recommendations and earn a percentage of the revenue generated from the agent making trades. In this way, they act as money managers on behalf of the agent, and are entitled to a reward. This reward incentivizes information providers and information validators (those who are recommending against making buys or sells).
+
+\textbf{TODO: How do we reward "sell" incentives?}
+If a user recommends a sell that protects the agent from losses, a percentage of value that was not lost is given to these validators.
+
+\textit{NOTE: this can open up the agent to new kinds of trust scams and sybil attack, so weighting trust of recommendations vs validations is important, i.e. betting against a high trust information provider has a higher chance of yield than a low trust information provider
+}
+
+\subsection{Social Incentives}
+\textbf{TODO: This is covered in the 'social reinforcement' slightly but we should clarify and reiterate what the social incentives are for humans to share information and display their rank / score
+}\textbf{<TODO: Social incentives to encourage / reward good behavior>}
+
+\subsection{Perverse Incentives}
+Despite the alignment of economic incentives, the Marketplace of Trust may still be vulnerable to certain perverse incentives and adversarial behaviors. One potential issue is the exploitation of information asymmetries. Users with insider knowledge or privileged access to information may be able to make highly confident recommendations that are difficult for others to verify or challenge. This could lead to a concentration of trust scores among a small group of insiders, undermining the system's goal of surfacing crowdsourced wisdom.
+
+Another perverse incentive is the temptation to game the system by making a large number of low-risk, low-value recommendations. If the AI agent's betting strategy is not sufficiently calibrated, users may be able to accumulate high trust scores simply by making many small, safe bets rather than taking on riskier but potentially more informative bets. This could lead to a proliferation of low-quality recommendations that do little to advance the overall information ecosystem.  
+
+Collusion and Sybil attacks pose another challenge to the integrity of the Marketplace of Trust. Self-interested users may coordinate to upvote each other's recommendations or create multiple fake profiles to artificially inflate their trust scores. While the system's reliance on objective betting outcomes mitigates this risk compared to traditional reputation systems, sufficiently sophisticated attackers may still be able to exploit certain betting strategies or market inefficiencies.
+
+Finally, the social reinforcement mechanisms intended to cultivate a constructive community ethos may lead to unintended consequences such as group polarization [\textbf{needs citation}] or herd behavior [\textbf{needs citation}]. If the system inadvertently creates echo chambers where dissenting opinions are suppressed, the quality and diversity of information may suffer. Users may also be tempted to simply follow the recommendations of high-trust users rather than thinking critically for themselves.  
+
+\subsection{Sybil Attacks / \textit{Find correct name: }Split Prediction Scam (Confidence Game)
+}
+The main weakness by sybil attack is that some percentage of bots can make many correct predictions in a row, simply as a numbers game. Half recommend to buy, half recommend to sell. The ones that are most correct may be in a position to them recommend tokens as part of a pump and dump scheme.
+
+<more info here>
+
+\subsection{Other Attack Vectors}
+What other strategies could be applied to game the system?
+What happens if a high trust user is hacked? This increases in probability as the number of tracked users goes up.
+
+\subsection{Mitigation Strategies}
+To address these potential perverse incentives and vulnerabilities, the Marketplace of Trust must incorporate a range of mitigation strategies and safeguards:
+
+\textbf{TODO: More mitigation strategies
+}
+\textbf{-> Obfuscation? Can hide results and randomly make buys some percentage of the buy so recommendations are not always guaranteed to yield real purchases from the agent
+}
+\textbf{-> Consensus -- weight if more high trust providers agree on a buy or sell signal, instead of just one member}
+
+-> Variable time delay -- buy recommendations are very sensitive to time, especially on lower market cap tokens
+
+-> Evaluate risk based on market cap and liquidity
+
+\begin{itemize}
+    \item \textbf{Encouraging diversity}: The system should actively encourage a diversity of perspectives and information sources to mitigate the risk of information asymmetries and echo chambers. This may involve explicitly rewarding novel or contrarian recommendations that prove to be accurate.
+    \item \textbf{Reputation staking}: To discourage low-effort gaming, the system may require users to stake a portion of their existing reputation on each recommendation they make. This creates a disincentive to make frivolous or bad-faith recommendations, as the potential reputation loss outweighs the gain.
+    \item \textbf{Anomaly detection}: The trust evaluation module should incorporate anomaly detection algorithms to identify and flag unusual betting patterns that may indicate collusion or Sybil attacks. Suspicious accounts can be temporarily suspended pending further investigation.  
+    \item \textbf{Community moderation}: The social reinforcement module should include robust community moderation features to identify and address trolling, harassment and other bad behavior. Clear guidelines and transparent enforcement can help maintain a healthy community culture.
+    \item \textbf{Randomized auditing}: To deter gaming and maintain confidence in the system, a random sample of recommendations and bets should be audited for irregularities. The mere possibility of audits can discourage attempts to exploit the system.
+\end{itemize}
+
+Ultimately, no system is entirely immune to adversarial behavior. The key is to design an architecture with layered defenses and to remain vigilant in monitoring for potential exploits. By combining economic incentives with social norms and technical safeguards, the Marketplace of Trust aims to be a robust and antifragile information ecosystem. 
+
+
+\section{Implementation}
+
+\subsection{Algorithm}
+
+\textbf{TODO: Present the basic algorithm for trust within agentic system
+}
+\subsection{Source Code}
+
+We present source code and reference implementation of a full marketplace of trust system here:
+\textbf{<TODO: LINK>}
+
+\subsection{Dataset}
+
+We release a dataset of real world information extracted from "alpha" group chats and conversations for further research
+\textbf{TODO: Flesh this out and link
+}
+\section{Applications}
+
+The Marketplace of Trust has a wide range of potential applications spanning multiple domains. This section highlights two promising near-term applications in investing and human-AI interaction, as well as several longer-term possibilities in decentralized governance, content moderation, and open source development.
+
+\subsection{Investing and Trading}
+One immediate application of the Marketplace of Trust is in the domain of investing and trading . An enormous amount of financial information and advice is available online, but the quality and reliability of this information varies widely. Retail investors often struggle to distinguish signal from noise, leaving them vulnerable to misinformation and manipulation.
+
+The Marketplace of Trust could serve as a valuable tool for investors by aggregating and filtering crowdsourced investment recommendations. Users could submit stock picks, market analyses, and other financial insights, which would be evaluated by an AI agent placing virtual bets. Over time, the system would identify the most reliable and consistently profitable sources of investment advice, as reflected in their trust scores. Investors could use the Marketplace to discover and follow high-reputation experts in particular sectors or asset classes. The social reinforcement mechanisms could also facilitate valuable networking and knowledge sharing among investors and market analysts. By fostering a community around high-quality financial information, the Marketplace could help elevate discourse and decision-making in the investing world.
+
+\subsection{Decentralized Governance}
+Looking further ahead, the Marketplace could play a vital role in enabling decentralized governance and collective decision-making. A key challenge is determining which participants are well-informed and have the collective's best interests in mind when submitting proposals or casting votes.
+
+By having an AI agent take simulated actions based on user proposals and evaluating outcomes against objective metrics, the Marketplace could separate high-quality proposals from noise or malicious attempts to game the system. Trust profiles would reveal the most consistently reliable participants, whose inputs could be weighted more heavily in collective decisions. This application could be particularly valuable for decentralized protocols, DAOs, and open metaverse governance managing shared digital resources and economic activity. The Marketplace would allow these collectives to integrate high-signal information securely while mitigating attacks and misaligned incentives.
+
+\subsection{Content Moderation}
+The proliferation of online misinformation, hate speech, and objectionable content poses an existential risk to the modern information ecosystem. Current content moderation practices remain opaque at major platforms and are frequently criticized as too restrictive or permissive. The Marketplace offers a novel, decentralized approach driven by community input.
+
+Users could submit specific posts, articles or other content to the Marketplace, along with a rationale for promoting, demoting, removing or leaving it unchanged. The AI agent would simulate actions based on these recommendations, like adjusting visibility or distribution. If real-world metrics like engagement, revenue, or user feedback aligned with a recommendation, the user's content moderation trust score would increase. Over time, this would reveal users most effective at identifying high-quality, popular content for promotion, as well as misinformation and toxic content to throttle or remove. The resulting trust profiles could be incorporated into moderation algorithms, allowing community-vetted experts to curate the online landscape scalably and transparently.
+
+\subsection{Open Source Development}
+ Finally, the Marketplace could play a major role in facilitating and improving distributed open source software development. High-quality code contributions are crucial, but filtering out bugs, vulnerabilities and other flawed submissions in large, active repos is challenging. 
+
+The Marketplace would allow human reviewers to evaluate proposed code changes and provide structured feedback. An AI agent would simulate accepting or rejecting code based on this feedback. If outcomes like successful builds, performance metrics, and bug reports were positive, the reviewer's trust score would increase. Code leading to failures or disclosed vulnerabilities would reduce reviewer scores. This would elevate consistently reliable reviewers and identify high-quality contributors across projects. Their public profiles could be prominently displayed to maintainers considering submissions. The most reputable reviewers could receive higher permissions or decision weight on critical projects, helping direct effort toward producing secure, robust open source code
+
+\subsection{Human-AI Interaction}
+Another promising application is in curating and evaluating inputs for large language models and other AI systems. As AI capabilities advance, there is an increasing need for reliable training data to instruct AI models safely and align them with human values. The Marketplace could serve as a vetting system for this training data.
+
+Human users could submit text prompts, examples, rules, and other inputs they believe should shape an AI model's behavior. The trust evaluation module would then test these inputs by having the AI model make predictions or take actions based on them. The outcomes would be automatically evaluated against objective criteria, and the user's trust score adjusted accordingly. Over time, this process would identify the humans most effective at providing inputs that lead to desired AI behavior across diverse situations. These high-reputation users could be prioritized for data collection or employed as AI trainers. The public trust profiles would make aligning advanced AI systems with human values more transparent and participatory.
+
+\subsection{Academic Papers}
+\textbf{TODO: Trust based on bibliography and cited sources, and how many papers are citing this paper?
+Incentivization of paper replication as a trust factor?}
+
+\subsection{Further Work}
+
+What can we implement and work on next? Do we want to move further applications into here and move investment and trading into our implementation?
+
+\section{Conclusion}
+
+\textbf{TODO: Review this, also we should focus on our own Eliza, not ELIZA the chatbot.
+}
+The Marketplace of Trust represents a novel approach to curating crowdsourced information by leveraging social reinforcement and artificial intelligence. By aligning economic incentives with honesty and harnessing the wisdom of the crowd, our proposed system aims to robustly surface reliable, high-quality information and mitigate the spread of misinformation.
+
+Building on early work with conversational interfaces like ELIZA, the integration of an AI agent that directly engages with human users extends these ideas with economic reasoning and reputation management capabilities. This unique combination of AI mediation and social incentives offers a powerful framework for eliciting trustworthy recommendations and leveraging the collective intelligence of online communities.
+
+While the Marketplace of Trust presents an attractive and intuitive approach to decentralized trust management, significant challenges remain in combating potential vulnerabilities and perverse incentives. Robust anomaly detection algorithms, community moderation practices, and other defense mechanisms outlined in this paper require further research and development. Empirical studies and simulations of market dynamics under various adversarial conditions could yield valuable insights to inform the real-world implementation of such a system.
+
+Looking ahead, the Marketplace of Trust has tremendous potential to transform the way humans and AI systems interact and collaborate to solve complex informational challenges. From investing and content recommendation to governance and open-source development, our proposed architecture provides a flexible and powerful framework for harnessing the best of both human and machine intelligence. As the digital information landscape continues to evolve, the Marketplace of Trust points the way towards a more reliable, transparent, and socially beneficial online ecosystem.
+
+
+
+\bibliographystyle{ieeetr}
+\bibliography{citations}
+
+\end{document}
